@@ -18,7 +18,7 @@ struct MainView: View {
             LinearGradient(colors: [.indigo, .mint], startPoint: .bottomLeading, endPoint: .topTrailing)
                 .ignoresSafeArea()
             VStack {
-                Text("Learn colors")
+                Text("Learn color")
                     .font(.system(size: 23) .monospaced() .bold())
                     .foregroundColor(.black)
                 
@@ -44,7 +44,7 @@ struct MainView: View {
                 }
                 Spacer(minLength: 250)
             }
-            ScrollView (.horizontal) {
+            ScrollView (.horizontal, showsIndicators: false) {
                 HStack {
                     ForEach(vm.colors.colors, id:\.self) { item in
                         Circle()
