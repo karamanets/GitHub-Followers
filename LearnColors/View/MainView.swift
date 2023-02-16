@@ -9,13 +9,15 @@ import SwiftUI
 
 struct MainView: View {
     
-    @ObservedObject var vm = ViewModel()
+    @ObservedObject var vm = ColorsViewModel()
     
     var body: some View {
         
         ZStack ( alignment: .bottom) {
             
-            LinearGradient(colors: [.indigo, .mint], startPoint: .bottomLeading, endPoint: .topTrailing)
+            LinearGradient(colors: [.purple, .orange],
+                           startPoint: .bottomLeading,
+                           endPoint: .topTrailing)
                 .ignoresSafeArea()
             VStack {
                 Text("Learn color")
@@ -41,6 +43,7 @@ struct MainView: View {
                         .font(.system(size: 22) .monospaced() .bold() )
                         .foregroundColor(Color.black)
                         .padding(.top, 30)
+                        .frame(width: 120)
                 }
                 Spacer(minLength: 250)
             }
