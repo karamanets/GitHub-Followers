@@ -17,10 +17,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = ViewController()
+        window?.rootViewController = createTabBar()
         window?.makeKeyAndVisible()
     }
-
+    
+    //MARK: - Default
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
@@ -50,3 +51,47 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 }
 
+//MARK: Private Methods
+private extension SceneDelegate {
+    
+    /// Setup for Search Tab Item
+    func createSearchNC() -> UINavigationController {
+        let searchVC = SearchVC()
+        searchVC.title = "Search"
+        searchVC.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
+        
+        return UINavigationController(rootViewController: searchVC)
+    }
+    
+    /// Setup for Favorite Tab item
+    func createFavoriteNC() -> UINavigationController {
+        let favoriteVC = FavoritesListVC()
+        favoriteVC.title = "Favorite"
+        favoriteVC.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
+        
+        return UINavigationController(rootViewController: favoriteVC)
+    }
+    
+    /// Setup TabBar
+    func createTabBar() -> UITabBarController {
+        
+        /// Navigation Controllers
+        let searchNC = createSearchNC()
+        let favoriteNC = createFavoriteNC()
+        
+        /// Tab Bar Controller
+        let tabBar = UITabBarController()
+        
+        /// Colors of Icons
+        tabBar.tabBar.tintColor = .systemGreen
+        tabBar.tabBar.unselectedItemTintColor = .systemGray
+        
+        /// Background Color of Tab Bar
+        tabBar.tabBar.backgroundColor = .systemBackground
+        
+        /// Add Navigation Controllers to Tab Bar
+        tabBar.viewControllers = [searchNC, favoriteNC]
+        
+        return tabBar
+    }
+}
