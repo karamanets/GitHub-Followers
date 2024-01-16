@@ -15,8 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
  
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
-        window?.windowScene = windowScene
+        window = UIWindow(windowScene: windowScene)
         window?.rootViewController = createTabBar()
         window?.makeKeyAndVisible()
     }
@@ -87,7 +86,7 @@ private extension SceneDelegate {
         tabBar.tabBar.unselectedItemTintColor = .systemGray
         
         /// Background Color of Tab Bar
-        tabBar.tabBar.backgroundColor = .systemBackground
+        tabBar.tabBar.backgroundColor = .systemGray4
         
         /// Add Navigation Controllers to Tab Bar
         tabBar.viewControllers = [searchNC, favoriteNC]
