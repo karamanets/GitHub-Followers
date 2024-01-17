@@ -18,6 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = createTabBar()
         window?.makeKeyAndVisible()
+        
+        configureNavigationBar()
     }
     
     //MARK: - Default
@@ -92,5 +94,10 @@ private extension SceneDelegate {
         tabBar.viewControllers = [searchNC, favoriteNC]
         
         return tabBar
+    }
+    
+    /// Change Tint Color for Navigation Bar (Go Back button Color)
+    func configureNavigationBar() {
+        UINavigationBar.appearance().tintColor = .systemGreen
     }
 }

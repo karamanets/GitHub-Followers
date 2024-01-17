@@ -16,6 +16,7 @@ class SearchVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialize()
+        createDismissKeyboardTapGesture()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,6 +46,7 @@ private extension SearchVC {
         
         ///Add Text Field
         view.addSubview(textField)
+        textField.delegate = self
         NSLayoutConstraint.activate([
             textField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 50),
             textField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
@@ -54,11 +56,54 @@ private extension SearchVC {
         
         ///Add Button
         view.addSubview(actionButton)
+        actionButton.addTarget(self, action: #selector(pushFollowersList), for: .touchUpInside)
         NSLayoutConstraint.activate([
             actionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -80),
             actionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             actionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
             actionButton.heightAnchor.constraint(equalToConstant: 55)
         ])
+    }
+    
+    /// Dismiss Keyboard when tab on the Screen
+    func createDismissKeyboardTapGesture() {
+        let tab = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tab)
+    }
+    
+    /// Move to the FollowerList ViewController -> press ActionButton or Go on Keyboard
+    @objc func pushFollowersList() {
+        
+        guard isUserNameValid else { 
+            print("Add Correct Amount of Symbols")
+            return
+        }
+        
+        let vc = FollowersListVC()
+        vc.userName = textField.text
+        vc.title = textField.text
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    /// Basic Validation TextField
+    var isUserNameValid: Bool {
+        let isEmpty = textField.text?.isEmpty                  /// Check is Empty
+        let isEnoughSymbols = textField.text?.count ?? 0 > 2   /// Check is more then 3 Symbols
+        if let isEmpty, isEnoughSymbols {
+            return !isEmpty
+        } else {
+            return false
+        }
+    }
+}
+
+//MARK: - Text Field Delegate
+extension SearchVC: UITextFieldDelegate {
+    
+    ///For Go Button in Keyboard -> Send Data user name to the FollowersListVC and close Keyboard
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        pushFollowersList()
+        return true
     }
 }
