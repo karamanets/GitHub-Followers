@@ -75,7 +75,9 @@ private extension SearchVC {
     @objc func pushFollowersList() {
         
         guard isUserNameValid else { 
-            print("Add Correct Amount of Symbols")
+            presentGFAlert(title: "Empty Username",
+                           message: "Please enter a username.\nWe need to now who to look for.\n🔥",
+                           buttonTitle: "Ok")
             return
         }
         
