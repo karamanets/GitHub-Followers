@@ -15,6 +15,11 @@ class FollowersListVC: UIViewController {
         super.viewDidLoad()
         initialize()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
 }
 
 //MARK: Private Methods
@@ -23,7 +28,6 @@ private extension FollowersListVC {
     ///Initialize
     func initialize() {
         view.backgroundColor = .systemBackground
-        navigationController?.isNavigationBarHidden = false
         navigationController?.navigationBar.prefersLargeTitles = true
     }
 }
