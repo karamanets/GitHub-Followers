@@ -29,5 +29,16 @@ private extension FollowersListVC {
     func initialize() {
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        if let userName {
+            NetworkManager.shared.getFollowers(for: userName, page: 1) { result in
+                switch result {
+                case .success(let followers):
+                    print(followers)
+                case .failure(let error):
+                    self.presentGFAlert(title: "Error ⚠️", message: error.rawValue, buttonTitle: "Ok")
+                }
+            }
+        }
     }
 }
