@@ -8,7 +8,7 @@
 import Foundation
 
 /// Follower Model of user
-struct Follower: Codable {
+struct Follower: Codable, Hashable {
     var login: String
     var avatarUrl: String
 }

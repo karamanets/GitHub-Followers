@@ -8,6 +8,8 @@
 import UIKit
 
 class GFButton: UIButton {
+    
+    private let touchAreaPadding: CGFloat = 20
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,6 +28,14 @@ class GFButton: UIButton {
         configure()
     }
     
+    /// Increase the touch area by 20 points from all sides
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        
+        let largerArea = self.bounds.insetBy(dx: -touchAreaPadding, dy: -touchAreaPadding)
+        
+        return largerArea.contains(point)
+    }
+    
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
         
@@ -40,5 +50,4 @@ class GFButton: UIButton {
         layer.shadowOpacity = 0.7
         layer.shadowOffset = CGSize(width: 2, height: 2)
     }
-    
 }
