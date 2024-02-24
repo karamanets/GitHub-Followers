@@ -41,27 +41,13 @@ private extension FollowersListVC {
     
     /// SetUp for CollectionView
     func configureCollectionView() {
-        collectionsView = UICollectionView(frame: view.bounds, collectionViewLayout: createThreeColumnFlowLayout())
+        collectionsView = UICollectionView(frame: view.bounds,
+                                           collectionViewLayout: UIHelper.createThreeColumnFlowLayout(in: view))
         view.addSubview(collectionsView)
         collectionsView.backgroundColor = .systemBackground
         collectionsView.register(FollowerCell.self, forCellWithReuseIdentifier: FollowerCell.reuseId)
     }
-    
-    /// Create Three Column for CollectionView
-    func createThreeColumnFlowLayout() -> UICollectionViewFlowLayout {
-        let width: CGFloat = view.bounds.width
-        let padding: CGFloat = 12
-        let minimumItemSpacing: CGFloat = 10
-        let availableWidth: CGFloat = width - (padding * 2) - (minimumItemSpacing * 2)
-        let itemWidth: CGFloat = availableWidth / 3
         
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
-        flowLayout.itemSize = CGSize(width: itemWidth, height: itemWidth + (padding * 3))
-        
-        return flowLayout
-    }
-    
     /// Configure Cell for Collection View by using DiffableDataSource
     func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource(collectionView: collectionsView,
@@ -76,10 +62,16 @@ private extension FollowersListVC {
         })
     }
     
+    /// Sections of Collection View
+    enum Sections { case main }
+    
     /// Get Followers List
     func getFollowers() {
         if let userName {
-            NetworkManager.shared.getFollowers(for: userName, page: 1) { result in
+            NetworkManager.shared.getFollowers(for: userName, page: 1) { [weak self] result in
+                
+                guard let self else { return }
+                
                 switch result {
                 case .success(let followers):
                     self.followers = followers
@@ -89,11 +81,6 @@ private extension FollowersListVC {
                 }
             }
         }
-    }
-    
-    /// Sections of Collection View
-    enum Sections {
-        case main
     }
     
     //MARK: - Internal extension methods
