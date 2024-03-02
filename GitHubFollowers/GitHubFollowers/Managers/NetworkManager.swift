@@ -5,7 +5,7 @@
 //  Created by Alex Karamanets on 30/01/2024.
 //
 
-import Foundation
+import UIKit
 
 
 class NetworkManager {
@@ -15,6 +15,8 @@ class NetworkManager {
     private init() {}
     
     private let baseURL = "https://api.github.com/users/"
+    
+    let cache = NSCache<NSString, UIImage>()
     
     ///📌 Get Array of Followers ( logo and Image url))
     func getFollowers(for username: String, page: Int, completion: @escaping (Result<[Follower], GFError>) -> Void ) {

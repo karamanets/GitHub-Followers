@@ -11,6 +11,7 @@ class FollowerCell: UICollectionViewCell {
     
     func configureCell(follower: Follower) {
         usernameLabel.text = follower.login
+        avatarImageView.downloadImage(from: follower.avatarUrl)
     }
     
     static let reuseId = "FollowerCell"
