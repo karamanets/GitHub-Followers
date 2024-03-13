@@ -72,9 +72,12 @@ private extension FollowersListVC {
     /// Get Followers List
     func getFollowers(userName: String?, page: Int) {
         if let userName {
+            showLoadingView()
             NetworkManager.shared.getFollowers(for: userName, page: page) { [weak self] result in
                 
                 guard let self else { return }
+                
+                dismissLoadingView()
                 
                 switch result {
                 case .success(let followers):
