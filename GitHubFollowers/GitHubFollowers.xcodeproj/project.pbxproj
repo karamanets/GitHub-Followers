@@ -27,6 +27,7 @@
 		2CC54C7A2B5BA67C0054805A /* GFAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC54C792B5BA67C0054805A /* GFAlertVC.swift */; };
 		2CC54C7D2B5BB5810054805A /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC54C7C2B5BB5810054805A /* UIViewController.swift */; };
 		2CD8BB142B57B5FA009CBF56 /* FollowersListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD8BB132B57B5FA009CBF56 /* FollowersListVC.swift */; };
+		2CF9E80C2BAE9CEF0018D3CA /* GFEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF9E80B2BAE9CEF0018D3CA /* GFEmptyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		2CC54C792B5BA67C0054805A /* GFAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFAlertVC.swift; sourceTree = "<group>"; };
 		2CC54C7C2B5BB5810054805A /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		2CD8BB132B57B5FA009CBF56 /* FollowersListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersListVC.swift; sourceTree = "<group>"; };
+		2CF9E80B2BAE9CEF0018D3CA /* GFEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFEmptyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 				2CC54C752B5BA30F0054805A /* GFTitleLabel.swift */,
 				2CC54C772B5BA5610054805A /* GFBodyLabel.swift */,
 				2C30E1022B70BFED0080D531 /* GFAvatarImageView.swift */,
+				2CF9E80B2BAE9CEF0018D3CA /* GFEmptyView.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 				2C9FF07E2B639804004171D4 /* Follower.swift in Sources */,
 				2C11A3A32B8A25DD00BA8377 /* UIHelper.swift in Sources */,
 				2C30E1032B70BFED0080D531 /* GFAvatarImageView.swift in Sources */,
+				2CF9E80C2BAE9CEF0018D3CA /* GFEmptyView.swift in Sources */,
 				2C755D6D2B4FC77700A5B7DB /* GFButton.swift in Sources */,
 				2CC54C7A2B5BA67C0054805A /* GFAlertVC.swift in Sources */,
 				2C30E1012B70BF430080D531 /* FollowerCell.swift in Sources */,

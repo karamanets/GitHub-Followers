@@ -83,6 +83,14 @@ private extension FollowersListVC {
                 case .success(let followers):
                     if followers.count < 100 { isHasMoreFollowers = false }
                     self.followers.append(contentsOf: followers)
+                    
+                    if followers.isEmpty {
+                        let message = "This user doesn't have any followers.\nGo follow them 🥳"
+                        DispatchQueue.main.async {
+                            self.ShowEmptyStateView(with: message, in: self.view)
+                            return
+                        }
+                    }
                     self.updateData()
                 case .failure(let error):
                     self.presentGFAlert(title: "Error ⚠️", message: error.rawValue, buttonTitle: "Ok")
